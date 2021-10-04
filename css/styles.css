@@ -1,0 +1,58 @@
+body{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.table {
+    width: 80%;
+    border: 5px solid black;
+    border-radius: 20px;
+    background: grey;
+    color: white;
+    padding: 20px;
+    font-size: 48px;
+}
+.hand{
+    border-radius: 20px;
+    height: 200px;
+    background-color: lightgray;
+    display: flex;
+    align-items: center;
+}
+.hand img {
+    height: 180px;
+    width: auto;
+    padding: 10px 0 10px 10px;
+}
+
+.buttons{
+    height: 100px; 
+    display: flex; 
+    justify-content: space-around;
+    align-items: center;
+    padding-left: 200px;
+    padding-right: 200px;
+}
+button{
+    height: 80px;
+    width: 150px;
+    font-size: 32px;
+    border: 3px solid black;
+    border-radius: 20px;
+}
+button:hover{
+    background-color: lightgray;
+}
+.player-winLoss{
+    padding-right: 50px;
+}
+.player{
+    display: flex;
+    flex-direction: column;
+}
+.label-container{
+    display: flex;
+
+}
