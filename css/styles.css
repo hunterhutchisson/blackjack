@@ -4,6 +4,11 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+.message-box{
+    font-size: 48px;
+    height: 50px;
 }
 .table {
     width: 80%;

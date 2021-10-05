@@ -66,6 +66,9 @@ let dealerPoints = document.querySelector('#dealer-points')
 let playerWins = document.querySelector('#player-wins')
 let playerLosses = document.querySelector('#player-losses')
 
+// retrieve message
+let message = document.querySelector('.message-box')
+
 // game state to see if game has been played or needs to be reset
 let gameState = true
 
@@ -174,6 +177,7 @@ function resetFun(){
     dealerHand.textContent = ""
     playerPoints.textContent = ""
     dealerPoints.textContent = ""
+    message.textContent = ""
     gameState = true
 }
 
@@ -189,14 +193,14 @@ deal.addEventListener('click', () => {
             aceCheck(dealerPoints, dealerCards)
         }
         else{
-            setTimeout(function(){ alert("You've already been delt your cards."); }, 250);
+            message.textContent = `You've already been delt your cards.`
         }
     }
     else{
-        setTimeout(function(){ alert(`
+        message.textContent = `
         Game has already been completed.
         Please reset.
-        `); }, 250);
+        `
     }
 })
 
@@ -206,27 +210,30 @@ hit.addEventListener('click', () => {
         if(playerCards.length > 0){
             distribute(deckShuffle, playerHand, playerCards, playerPoints)
             aceCheck(playerPoints, playerCards)
+            message.textContent = ""
             if (parseInt(playerPoints.textContent) > 21){
-                setTimeout(function(){ alert(`
+                message.textContent = `
                 You Busted!
                 Your Score: ${playerPoints.textContent}
                 Dealer's Score: ${dealerPoints.textContent}
                 Game Over!
-                `); }, 250);
+                `
                 playerLoss += 1
                 playerLosses.textContent = playerLoss
                 gameState = false
             }
         }
         else{
-            setTimeout(function(){ alert("You've haven't been delt your cards yet."); }, 250);
+            message.textContent = `
+            You've haven't been delt your cards yet.
+            `
         }
     }
     else{
-        setTimeout(function(){ alert(`
+        message.textContent = `
         Game has already been completed.
         Please reset.
-        `); }, 250);
+        `
     }
 })
 
@@ -246,36 +253,38 @@ stand.addEventListener('click', () => {
                 dealerScore = sum(dealerCards)
             }
             if ((dealerScore < playerScore) || (dealerScore > 21)){
-                setTimeout(function(){ alert(`
+                message.textContent = `
                 You Won!
                 Your Score: ${playerPoints.textContent}
                 Dealer's Score: ${dealerPoints.textContent}
                 Game Over!
-                `); }, 250);
+                `
                 playerWin += 1
                 playerWins.textContent = playerWin
                 gameState = false
             }
             else{
-                setTimeout(function(){ alert(`
+                message.textContent = `
                 You Lost!
                 Your Score: ${playerPoints.textContent}
                 Dealer's Score: ${dealerPoints.textContent}
                 Game Over!
-                `); }, 250);
+                `
                 playerLoss += 1
                 playerLosses.textContent = playerLoss
                 gameState = false
             }}
         else{
-            setTimeout(function(){ alert("You've haven't been delt your cards yet."); }, 250);
+            message.textContent = `
+            You've haven't been delt your cards yet.
+            `
         }
     }
     else{
-        setTimeout(function(){ alert(`
+        message.textContent = `
         Game has already been completed.
         Please reset.
-        `); }, 250);
+        `
     }
 })
 
