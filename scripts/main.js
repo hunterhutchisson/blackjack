@@ -1,5 +1,5 @@
 // setting up arrays of suites, values, scores
-let suites = ['clubs', 'spades', 'hearts', 'diamonds']
+let suits = ['clubs', 'spades', 'hearts', 'diamonds']
 let values = ['ace', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'jack', 'queen', 'king']
 let scores = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
@@ -7,11 +7,11 @@ let scores = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 function buildADeck(arr1, arr2, arr3){
     let deck = []
     for (let i1 = 0; i1 < arr1.length; i1++) {
-        let suiteCard = arr1[i1];
+        let suitCard = arr1[i1];
         for (let index = 0; index < arr2.length; index++) {
         let scoreCard = arr3[index];
         let valueCard = arr2[index];
-        let card = {suite:suiteCard, value:valueCard, img:`images/${valueCard}_of_${suiteCard}.png`, score:scoreCard}
+        let card = {suit:suitCard, value:valueCard, img:`images/${valueCard}_of_${suitCard}.png`, score:scoreCard}
         deck.push(card)
         }
     }
@@ -33,14 +33,14 @@ function shuffleDeck(arr) {
 }
 
 // variable for shuffled deck
-let deck = buildADeck(suites,values,scores)
+let deck = buildADeck(suits,values,scores)
 let deckShuffle = shuffleDeck(deck)
 
 // setting up empty arrays for cards
 let dealerCards = []
 let playerCards = []
 
-// setting up score sheets
+// setting up score 
 let playerScore = 0
 let dealerScore = 0
 
@@ -84,15 +84,15 @@ function createBlackImg(src){
 }
 
 //Ace not used, purely for testing aces.
-// function ace(deck, hand, cards, points){
-//     let card = {suite:'clubs', value:'ace', img:`images/ace_of_clubs.png`, score:11}
-//     cards.push(card)
-//     let cardImg = createImg(card.img)
-//     hand.appendChild(cardImg)
-//     let summed = sum(cards)
-//     points.textContent = summed
-//     return deck, hand, cards, points
-// }
+function ace(deck, hand, cards, points){
+    let card = {suite:'clubs', value:'ace', img:`images/ace_of_clubs.png`, score:11}
+    cards.push(card)
+    let cardImg = createImg(card.img)
+    hand.appendChild(cardImg)
+    let summed = sum(cards)
+    points.textContent = summed
+    return deck, hand, cards, points
+}
 
 // function to sum card points
 function sum(cards){
@@ -176,6 +176,7 @@ function resetFun(){
     dealerPoints.textContent = ""
     gameState = true
 }
+
 // event listenting to deal, and then will distribute hands and check for aces
 deal.addEventListener('click', () => {
     if (gameState == true){
@@ -192,8 +193,10 @@ deal.addEventListener('click', () => {
         }
     }
     else{
-        setTimeout(function(){ alert(`Game has already been completed.
-        Please reset.`); }, 250);
+        setTimeout(function(){ alert(`
+        Game has already been completed.
+        Please reset.
+        `); }, 250);
     }
 })
 
@@ -236,8 +239,8 @@ stand.addEventListener('click', () => {
             dealerScore = sum(dealerCards)
             dealerPoints.textContent = dealerScore
             let blackCard = document.querySelector('#blackCard')
-            blackCard.setAttribute('src', `images/${dealerCards[0].value}_of_${dealerCards[0].suite}.png`)
-            while(dealerScore < 17 && playerScore != 21){
+            blackCard.setAttribute('src', `images/${dealerCards[0].value}_of_${dealerCards[0].suit}.png`)
+            while(dealerScore < 17){
                 distribute(deckShuffle, dealerHand, dealerCards, dealerPoints)
                 aceCheck(dealerPoints, dealerCards)
                 dealerScore = sum(dealerCards)
